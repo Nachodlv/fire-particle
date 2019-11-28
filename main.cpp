@@ -8,15 +8,10 @@ int main() {
 
     Screen screen{};
     screen.init();
-
-    bool quit = false;
-
+    
 //  game loop
-    while (!quit) {
-//        Update particles
-//        Draw particles
-        quit = screen.Update();
-
+    while (true) {
+        if(screen.processEvents()) break;
     }
 
    screen.destroyScreen();

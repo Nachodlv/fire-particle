@@ -6,6 +6,9 @@
 
 using namespace std;
 
+Screen::Screen() : m_renderer(nullptr), m_texture(nullptr), m_window(nullptr), m_buffer(nullptr) {
+
+}
 
 bool Screen::init() {
 
@@ -54,8 +57,7 @@ bool Screen::init() {
     }
 
 //    Maybe should I check if the memory could be allocated
-    m_buffer1 = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT];
-
+    m_buffer = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT];
 
     return true;
 }
@@ -66,14 +68,21 @@ void Screen::destroyScreen() {
     SDL_DestroyWindow(m_window);
     SDL_Quit();
 
-    delete[] m_buffer1;
+    delete[] m_buffer;
 }
 
-bool Screen::Update() {
+bool Screen::processEvents() {
 
-    memset(m_buffer1, 0xFF, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
+    memset(m_buffer, 0, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
 
-    SDL_UpdateTexture(m_texture, nullptr, m_buffer1, SCREEN_WIDTH * sizeof(Uint32));
+    m_buffer[30000] = 0xFFFFFFFF;
+    Uint32 color = 0;
+
+    for (int i = 0; i < SCREEN_WIDTH * 2; i++, color++) {
+        m_buffer[i + SCREEN_WIDTH * SCREEN_HEIGHT / 2] = 0xFFFFFFFF;
+    }
+
+    SDL_UpdateTexture(m_texture, nullptr, m_buffer, SCREEN_WIDTH * sizeof(Uint32));
     SDL_RenderClear(m_renderer);
     SDL_RenderCopy(m_renderer, m_texture, nullptr, nullptr);
     SDL_RenderPresent(m_renderer);

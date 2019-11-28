@@ -58,11 +58,14 @@ bool Screen::init() {
 
 //    Maybe should I check if the memory could be allocated
     m_buffer = new Uint32[SCREEN_WIDTH * SCREEN_HEIGHT];
+//    Initializes all the pixels in black
+    memset(m_buffer, 0, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
+
 
     return true;
 }
 
-void Screen::destroyScreen() {
+void Screen::destroyScreen() const{
     SDL_DestroyRenderer(m_renderer);
     SDL_DestroyTexture(m_texture);
     SDL_DestroyWindow(m_window);
@@ -72,21 +75,6 @@ void Screen::destroyScreen() {
 }
 
 bool Screen::processEvents() {
-
-    memset(m_buffer, 0, SCREEN_WIDTH * SCREEN_HEIGHT * sizeof(Uint32));
-
-    m_buffer[30000] = 0xFFFFFFFF;
-    Uint32 color = 0;
-
-    for (int i = 0; i < SCREEN_WIDTH * 2; i++, color++) {
-        m_buffer[i + SCREEN_WIDTH * SCREEN_HEIGHT / 2] = 0xFFFFFFFF;
-    }
-
-    SDL_UpdateTexture(m_texture, nullptr, m_buffer, SCREEN_WIDTH * sizeof(Uint32));
-    SDL_RenderClear(m_renderer);
-    SDL_RenderCopy(m_renderer, m_texture, nullptr, nullptr);
-    SDL_RenderPresent(m_renderer);
-
 //        Check for messages/events
     while (SDL_PollEvent(&event)) {
 //          If the user close the windows then it breaks the game loop
@@ -95,4 +83,25 @@ bool Screen::processEvents() {
         }
     }
     return false;
+}
+
+void Screen::update() const {
+    SDL_UpdateTexture(m_texture, nullptr, m_buffer, SCREEN_WIDTH * sizeof(Uint32));
+    SDL_RenderClear(m_renderer);
+    SDL_RenderCopy(m_renderer, m_texture, nullptr, nullptr);
+    SDL_RenderPresent(m_renderer);
+}
+
+void Screen::setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
+    Uint32 color = 0;
+    unsigned int twoChars = 8;
+    color += red;
+    color <<= twoChars;
+    color += green;
+    color <<= twoChars;
+    color += blue;
+    color <<= twoChars;
+    color += 0xFF;
+
+    m_buffer[(y * SCREEN_WIDTH) + x] = color;
 }

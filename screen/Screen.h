@@ -40,7 +40,7 @@ public:
      * Destroys the renderer, the texture and the screen.
      * It also delete the memory space reserved for m_buffer
      * */
-    void destroyScreen();
+    void destroyScreen() const;
 
     /**
      * Processes the events of SDL.
@@ -48,6 +48,18 @@ public:
      * If it returns false it means that it does not received a QUIT event.
      * */
     bool processEvents();
+
+    /**
+     * Changes the color of one pixel.
+     * x and y are the position of the pixel in the window.
+     * red, green and blue are the RGB of the pixel.
+     * */
+    void setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue);
+
+    /**
+     * Updates the renderer and the texture.
+     * */
+    void update() const;
 };
 
 

@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${SDL2_SOURCE_DIR}/cmake")
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp screen/Screen.cpp screen/Screen.h)
 add_executable(fire_particle ${SOURCE_FILES})
 
 find_package(SDL2 REQUIRED)

@@ -61,6 +61,9 @@ public:
      * */
     void update() const;
 
+    /**
+     * Clears the screen by setting all the pixels to black.
+     * */
     void clear() const;
 };
 

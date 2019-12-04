@@ -13,13 +13,15 @@ public:
     const static int N_PARTICLES = 5000;
 
 private:
-    const Particle * m_pParticle;
+    Particle * m_pParticle;
 
 public:
     Swarm();
     ~Swarm();
 
     const Particle * getParticles(){return m_pParticle;};
+
+    void update();
 };
 
 

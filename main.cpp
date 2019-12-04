@@ -17,6 +17,10 @@ int main() {
 //  game loop
     while (true) {
 
+        screen.clear();
+
+        swarm.update();
+
         auto elapsed = SDL_GetTicks();
         unsigned char red = (int) ((sin(elapsed * 0.0001) + 1) * 128);
         unsigned char green = (int) ((sin(elapsed * 0.0002) + 1) * 128);

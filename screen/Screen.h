@@ -60,6 +60,8 @@ public:
      * Updates the renderer and the texture.
      * */
     void update() const;
+
+    void clear() const;
 };
 
 

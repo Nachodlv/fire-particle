@@ -1,0 +1,18 @@
+//
+// Created by ignacio on 4/12/19.
+//
+
+#ifndef FIRE_PARTICLE_PARTICLE_H
+#define FIRE_PARTICLE_PARTICLE_H
+
+
+struct Particle {
+    double m_x;
+    double m_y;
+
+public:
+    Particle();
+};
+
+
+#endif //FIRE_PARTICLE_PARTICLE_H

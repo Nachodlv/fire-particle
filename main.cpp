@@ -27,14 +27,16 @@ int main() {
         unsigned char blue = (int) ((sin(elapsed * 0.0003) + 1) * 128);
 
         const Particle *const pParticles = swarm.getParticles();
+        const auto halfHeight = Screen::SCREEN_HEIGHT / 2;
+        const auto halfWidth = Screen::SCREEN_WIDTH / 2;
+
         for (int i = 0; i < Swarm::N_PARTICLES; i++) {
             Particle particle = pParticles[i];
-            int x = (int) ((particle.m_x + 1) * Screen::SCREEN_WIDTH / 2);
-            int y = (int) ((particle.m_y + 1) * Screen::SCREEN_HEIGHT / 2);
+            int x = (int) ((particle.m_x + 1) * halfWidth);
+            int y = (int) (particle.m_y * Screen::SCREEN_WIDTH / 2 + halfHeight);
 
             screen.setPixel(x, y, red,green,blue);
         }
-
 
         screen.update();
 

@@ -24,7 +24,7 @@ public:
     /**
      * Changes the position of the particle according to the speed and the direction.
      * */
-    void update();
+    void update(int interval);
 };
 
 

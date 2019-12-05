@@ -17,6 +17,7 @@ public:
 
 private:
     Particle * m_pParticle;
+    int lastTime;
 
 public:
 
@@ -38,7 +39,7 @@ public:
     /**
      * Updates each particle
      * */
-    void update();
+    void update(int elapsed);
 };
 
 

@@ -18,7 +18,7 @@ int main() {
     while (true) {
         auto elapsed = SDL_GetTicks();
 
-        screen.clear();
+        screen.boxBlur();
 
         swarm.update(elapsed);
 

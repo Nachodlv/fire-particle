@@ -75,6 +75,7 @@ void Screen::destroyScreen() const {
     SDL_Quit();
 
     delete[] m_buffer1;
+    delete[] m_buffer2;
 }
 
 bool Screen::processEvents() {
@@ -128,8 +129,8 @@ void Screen::boxBlur() {
                 int currentY = y + row;
                 for (int col = -1; col <= 1; col++) {
                     int currentX = x + col;
-                    if(currentX >= 0 && currentX < SCREEN_WIDTH && currentY >= 0 && currentY < SCREEN_HEIGHT) {
-                        Uint32 color = m_buffer2[currentY*SCREEN_WIDTH + currentX];
+                    if (currentX >= 0 && currentX < SCREEN_WIDTH && currentY >= 0 && currentY < SCREEN_HEIGHT) {
+                        Uint32 color = m_buffer2[currentY * SCREEN_WIDTH + currentX];
 
                         Uint8 red = color >> (unsigned int) 24;
                         Uint8 green = color >> (unsigned int) 16;
@@ -142,9 +143,9 @@ void Screen::boxBlur() {
                 }
             }
 
-            Uint8 red = redTotal/9;
-            Uint8 green = greenTotal/9;
-            Uint8 blue = blueTotal/9;
+            Uint8 red = redTotal / 9;
+            Uint8 green = greenTotal / 9;
+            Uint8 blue = blueTotal / 9;
 
             setPixel(x, y, red, green, blue);
         }

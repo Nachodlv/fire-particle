@@ -17,16 +17,20 @@ private:
     double m_direction;
 
 private:
+    /**
+     * Set the particle position to (0, 0) and set a random direction and a random speed
+     * */
     void init();
 
 public:
     /**
-     * Initializes the position of the particle at (0, 0) and set a random speed and direction;
+     * Initializes the variables to 0 and calls the function init
      * */
     Particle();
 
     /**
      * Changes the position of the particle according to the speed and the direction.
+     * If the particle is out of bound, it calls the function init
      * */
     void update(int interval);
 };

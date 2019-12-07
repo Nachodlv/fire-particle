@@ -39,7 +39,7 @@ public:
 
     /**
      * Destroys the renderer, the texture and the screen.
-     * It also delete the memory space reserved for m_buffer
+     * It also delete the memory space reserved for m_buffer1 and for m_buffer2
      * */
     void destroyScreen() const;
 
@@ -62,6 +62,9 @@ public:
      * */
     void update() const;
 
+    /**
+     * Add to the screen the blur effect of the particles
+     * */
     void boxBlur();
 };
 
